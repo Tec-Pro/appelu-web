@@ -1,7 +1,13 @@
 /**
-* appelu Module
+*  Module: Appelu
 *
-* Description:
-* Module declaration for appelu
+* Description
 */
-angular.module('appelu', []);
+var app = angular.module('Appelu', ['ngRoute']);
+
+app.config(['$routeProvider',function($routeProvider) {
+	$routeProvider.when("/shifts", {
+		templateUrl: "webapp/shifts/views/list.html",
+		controller: "ShiftCtrl"
+	})
+}])
