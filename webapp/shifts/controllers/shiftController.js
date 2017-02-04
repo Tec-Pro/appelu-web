@@ -1,5 +1,12 @@
 var app = angular.module('Appelu');
 
-app.controller('ShiftCtrl', ['$scope', function($scope){
-	
+app.controller('ShiftCtrl', ['$scope','$timeout','$mdSidenav', function ($scope, $timeout, $mdSidenav) {
+    $scope.toggleLeft = buildToggler('left');
+    $scope.toggleRight = buildToggler('right');
+
+    function buildToggler(componentId) {
+      return function() {
+        $mdSidenav(componentId).toggle();
+      };
+    }
 }])

@@ -3,7 +3,7 @@
 *
 * Description
 */
-var app = angular.module('Appelu', ['ngRoute']);
+var app = angular.module('Appelu', ['ngRoute', 'ngMaterial']);
 
 app.config(['$routeProvider',function($routeProvider) {
 	$routeProvider.when("/shifts", {
