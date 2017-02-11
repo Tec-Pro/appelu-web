@@ -1,0 +1,66 @@
+
+
+
+  <body>
+  <md-content class="md-padding" >
+         <div layout="column" layout-gt-xs="row" >
+            <md-card flex >
+              <div layout="row" layout-align="center center">
+    
+                <h2>Iniciar sesion</h2>
+              </div>
+                <md-card-content>
+                    
+                      <md-content class="md-no-momentum">
+                      <md-input-container class="md-icon-float md-block">
+                        <!-- Use floating label instead of placeholder -->
+                        <label>Usuario</label>
+                        <input ng-model="user.name" type="text">
+                      </md-input-container>
+
+                      <md-content class="md-no-momentum">
+                      <md-input-container class="md-icon-float md-block">
+                        <!-- Use floating label instead of placeholder -->
+                        <label>Contraseña</label>
+                        <input ng-model="user.password" type="password">
+                      </md-input-container>
+
+                    </md-content>
+
+                        <div layout="row" layout-align="center center">
+    
+                           <md-button class="md-raised" ng-click="ingresar()">Ingresar</md-button>
+
+                        </div>
+                
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+
+</body>
+
+
+
+<style>
+body {
+  width:100%;
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+  background-color: rgba(163, 160, 160, 0.45);
+}
+/*md-content.md-default-theme, md-content {
+  background-color: rgba(163, 160, 160, 0.45);
+}*/
+
+.carddemoBasicUsage .card-media {
+  background-color: #999999; }
+
+md-card > h2 {
+  padding-left : 15px;
+  
+}
+
+</style>
+
