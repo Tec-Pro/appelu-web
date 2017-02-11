@@ -1,39 +1,44 @@
-<section layout="row" flex>
+ <!-- Menu bar --> 
+<md-toolbar layout="row" class="md-toolbar-tools">
+  <!-- Nombre de la app - Vista actual -->
+  <h1>Appelu - Turnos</h1>
+</md-toolbar>
 
-    <md-sidenav class="md-sidenav-left" md-component-id="left"
-                md-disable-backdrop md-whiteframe="4">
-
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
-      </md-toolbar>
-
-      <md-content layout-margin>
-        <p>
-          This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
-        </p>
-        <md-button ng-click="toggleLeft()" class="md-accent">
-          Close this Sidenav
+<!-- Main container -->
+<div flex layout="row">
+  <!-- Sidebar -->
+  <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+    <!-- Menu -->
+    <md-list>
+      <!-- Shifts -->
+      <md-list-item>
+        <md-button>
+          Turnos
         </md-button>
-      </md-content>
+      </md-list-item>
+      <md-divider></md-divider>
+      <!-- Reserves -->
+      <md-list-item>
+        <md-button>
+          Reservas
+        </md-button>
+      </md-list-item>
+      <md-divider></md-divider>
+      <!-- Profile -->
+      <md-list-item>
+        <md-button>Perfil</md-button>
+      </md-list-item>
+      <md-divider></md-divider>
+    </md-list>
+  </md-sidenav>
 
-    </md-sidenav>
+  <md-content flex id="content">
+      
+    <!-- Content -->  
 
-    <md-content flex layout-padding>
-
-      <div layout="column" layout-align="top center">
-        <p>
-          Developers can also disable the backdrop of the sidenav.<br/>
-          This will disable the functionality to click outside to close the sidenav.
-        </p>
-
-        <div>
-          <md-button ng-click="toggleLeft()" class="md-raised">
-            Toggle Sidenav
-          </md-button>
-        </div>
-
-      </div>
-
-    </md-content>
-
-  </section>  
+    <h2>Lia Luogo</h2>
+    <p>
+      I love cheese...
+    </p>
+  </md-content>
+</div>
