@@ -9,11 +9,11 @@ app.config(['$routeProvider',function($routeProvider) {
 	$routeProvider
 
 	.when("/shifts", {
-		templateUrl: "webapp/shifts/views/list.html",
+		templateUrl: "webapp/components/shifts/views/list.html",
 		controller: "ShiftCtrl"
 	})
 	.when("/login", {
-		templateUrl: "webapp/login/views/login.html",
+		templateUrl: "webapp/components/login/views/login.html",
 		controller: "LoginCtrl"
 	})
 }])

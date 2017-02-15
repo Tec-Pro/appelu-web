@@ -1,0 +1,18 @@
+<!-- Sidebar -->
+<md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp" hide-xs hide-sm layout-fill>
+  <!-- Menu -->
+  <md-list>
+  	<div ng-repeat="item in menuItems">
+    	<!-- Items -->
+      <md-list-item>
+      	<md-button class="md-raised" ng-href="#!{{item.url}}" flex>
+      		<div flex>
+      			{{item.name}} 
+      			<md-icon layout-align="end" class="material-icons step" aria-label="description">{{item.icon}}</md-icon>
+      		</div>
+      	</md-button>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+  </md-list>
+</md-sidenav>
