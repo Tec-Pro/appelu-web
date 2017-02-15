@@ -5,7 +5,7 @@
   	<div ng-repeat="item in menuItems">
     	<!-- Items -->
       <md-list-item>
-      	<md-button class="md-raised" ng-href="#!{{item.url}}" flex>
+      	<md-button ng-href="#!{{item.url}}" ng-class="{'active': activeMenu === item}" flex ng-click="setActive(item)">
       		<div flex>
       			{{item.name}} 
       			<md-icon layout-align="end" class="material-icons step" aria-label="description">{{item.icon}}</md-icon>
