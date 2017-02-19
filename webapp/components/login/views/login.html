@@ -2,9 +2,24 @@
 
 
   <body>
-  <md-content class="md-padding"  >
-         <div layout="column" layout-gt-xs="row" >
-            <md-card flex >
+
+  <div layout="row" style="height:100%;">
+    <div layout="column" flex>
+      
+      <div flex> 
+
+         <div layout="row" layout-align="center center">
+    
+                <h1>Peluqueria</h1>
+          </div>
+
+
+      </div>
+      <div flex>
+
+        
+         
+            <md-card flex flex-gt-md="50" layout-align="center center">
               <div layout="row" layout-align="center center">
     
                 <h2>Iniciar sesion</h2>
@@ -32,11 +47,36 @@
                            <md-button class="md-raised" ng-click="ingresar()">Ingresar</md-button>
 
                         </div>
+                        <br>
+                        <div>Olvidaste tu contraseña? click aqui!</div>
+                        <br>
+                        <div>
+
+                            <div layout="row" layout-align="center center">
+    
+                                <h3>¿Aun no tienes cuenta?</h3>
+                            </div>
+                            
+                            <div layout="row" layout-align="center center">
+    
+                           
+                            <md-button class="md-raised md-primary" ng-click="ingresar()">Registrate</md-button>
+
+                        </div>
+                           
+                        </div>
+
                 
                 </md-card-content>
             </md-card>
-        </div>
-    </md-content>
+        
+        
+
+      </div>
+      
+    </div>
+  </div>
+  
 
 </body>
 
