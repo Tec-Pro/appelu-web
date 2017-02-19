@@ -1,0 +1,15 @@
+.md-button.active {
+	background-color: #3f51b5;
+	color: white;
+}
+
+
+.md-button.active:not([disabled]):hover {
+	background-color: #3f8cb5;
+	color: white;
+}
+
+
+.md-button:not([disabled]):hover {
+	background-color: #e3e7e8;
+}
