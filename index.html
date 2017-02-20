@@ -15,8 +15,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Assets -->
-    <link rel="stylesheet" type="text/css" href="webapp/assets/css/shifts.css">
-    <link rel="stylesheet" type="text/css" href="webapp/assets/css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/shifts.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/sidebar.css">
 
     <!--Dependencies-->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
@@ -32,14 +32,15 @@
     <script type="text/javascript" src="webapp/app.js"></script>
 
     <!-- Controllers -->
+    <script type="text/javascript" src="webapp/components/profile/controllers/profileController.js"></script>
     <script type="text/javascript" src="webapp/components/shifts/controllers/shiftController.js"></script>
     <script type="text/javascript" src="webapp/components/login/controllers/loginController.js"></script>
-    <script type="text/javascript" src="webapp/shared/sidebar/sidebarController.js"></script>
-    <script type="text/javascript" src="webapp/shared/toolbar/toolbarController.js"></script>
+    <script type="text/javascript" src="webapp/shared/directives/sidebar/sidebarController.js"></script>
+    <script type="text/javascript" src="webapp/shared/directives/toolbar/toolbarController.js"></script>
 
     <!-- Directives -->
-    <script type="text/javascript" src="webapp/shared/sidebar/sidebarDirective.js"></script>
-    <script type="text/javascript" src="webapp/shared/toolbar/toolbarDirective.js"></script>
+    <script type="text/javascript" src="webapp/shared/directives/sidebar/sidebarDirective.js"></script>
+    <script type="text/javascript" src="webapp/shared/directives/toolbar/toolbarDirective.js"></script>
   </head>
   <body ng-cloak layout="column">
     <toolbar-directive></toolbar-directive>
