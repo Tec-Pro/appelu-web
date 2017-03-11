@@ -1,0 +1,12 @@
+.disabled-shift {
+	background-color: #fafafa;
+}
+
+.shift {
+	background-color: #3f51b5;
+}
+
+.shifts-content {
+	margin-left: 12px;
+	margin-top: 12px;
+}

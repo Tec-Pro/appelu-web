@@ -1,6 +1,6 @@
 var app = angular.module('Appelu');
 
-app.controller('SidebarCtrl', ['$scope','$timeout','$mdSidenav', function ($scope, $timeout, $mdSidenav) {
+app.controller('SidebarCtrl', ['$scope','$timeout','$mdSidenav','$location', '$route', function ($scope, $timeout, $mdSidenav, $location, $route) {
 	$scope.menuItems = [
 		{
 			name: "Turnos",
@@ -24,4 +24,15 @@ app.controller('SidebarCtrl', ['$scope','$timeout','$mdSidenav', function ($scop
 	$scope.setActive = function(menuItem){
 		$scope.activeMenu = menuItem;
 	}
+
+	function setVisible(){
+		$scope.visible = $location.path() != '/login';
+	}
+
+	$scope.$on('$routeChangeStart', function (scope, next, current) {
+       	setVisible();
+    });
+
+    setVisible();
+	
 }])

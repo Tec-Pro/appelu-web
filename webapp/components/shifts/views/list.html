@@ -1,14 +1,17 @@
 <!-- Main container -->
 <div>
-<!-- Content -->
-  <md-content layout-padding id="content">
-    <div layout="row" layout-xs="column">  
-      <md-list flex>
-        <md-subheader class="md-no-sticky">Turnos disponibles</md-subheader>
-        <md-list-item class="md-1-line" ng-repeat="shift in availableShifts">
-          <p>{{shift.hour}}</p>
-        </md-list-item>  
-      </md-list>
-    </div>
+<md-content class="shifts-content">
+  <!--Grid with shifts -->
+  <md-grid-list md-cols="4" md-gutter="12px" md-row-height="2:1">
+    <md-grid-tile ng-repeat="shift in availableShifts" class="shift" ng-class="{'disabled-shift': shift.status === 'disabled'}">
+      <div layout="column">
+        <span>{{shift.start_time}}</span>
+        <md-button class="md-button" aria-label="Cancelar turno" ng-disabled="shift.status === 'disabled'">
+          CANCELAR
+          <md-icon ng-class="material-icons">cancel</md-icon>
+        </md-button>
+      </div>
+    </md-grid-tile>
+  </md-grid-list>
   </md-content>
 </div>
