@@ -8,10 +8,6 @@ app.controller('SidebarCtrl', ['$scope','$timeout','$mdSidenav','$location', '$r
 			icon: "book"
 		},
 		{
-			name: "Reservas",
-			url: "/reserves",
-			icon: "assignment"
-		},{
 			name: "Perfil",
 			url: "/profile",
 			icon: "account_circle"

@@ -1,0 +1,31 @@
+<div layout="row">
+	<div flex="35">
+		<img flex="100" src="assets/img/placeholder.png" class="md-avatar" alt="{{item.who}}" />
+	</div>
+	<div flex="65"> 
+		<form name="userForm">
+			<div layout-gt-xs="row">
+				<md-input-container flex="60">
+					<label>Nombre de usuario</label>
+					<input type="text" ng-model="user.username">
+				</md-input-container>
+			</div>
+			<div layout-gt-xs="row">
+				<md-input-container flex="30">
+					<label>Nombre</label>
+					<input type="text" ng-model="user.name">
+				</md-input-container>
+				<md-input-container flex="30">
+					<label>Apellido</label>
+					<input type="text" ng-model="user.lastName">
+				</md-input-container>
+			</div>
+			<div layout-gt-xs="row">
+				<md-input-container flex="60">
+					<label>Email</label>
+					<input type="text" ng-model="user.email">
+				</md-input-container>
+			</div>
+		</form>
+	</div>
+</div>
