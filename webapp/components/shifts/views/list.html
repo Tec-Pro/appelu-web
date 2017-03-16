@@ -2,12 +2,12 @@
 <div>
   <div layout="row" layout-padding>
       <md-list flex>
-        <md-list-item class="md-1-line" ng-repeat="shift in availableShifts">
-           <p>Inicio: {{shift.start_time | date:"dd/MM HH:mm"}}</p>
-           <p>Fin: {{shift.end_time | date:"dd/MM HH:mm"}}</p>
-           <p>Servicio: {{shift.service_id}}</p>
-           <p>Usuario: {{shift.user_id}}</p>
-           <p>Comentario: {{shift.comment}}</p>
+        <md-list-item class="md-1-line" ng-repeat="shift in shifts">
+           <p>Inicio: {{shift.attributes.start_time | date:"dd/MM HH:mm"}}</p>
+           <p>Fin: {{shift.attributes.end_time | date:"dd/MM HH:mm"}}</p>
+           <p>Servicio: {{shift.attributes.service_id}}</p>
+           <p>Usuario: {{shift.attributes.user_id}}</p>
+           <p>Comentario: {{shift.attributes.comment}}</p>
         </md-list-item>  
       </md-list>
   </div>
