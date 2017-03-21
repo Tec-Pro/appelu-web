@@ -11,23 +11,43 @@ app.controller('SidebarCtrl', ['$scope','$timeout','$mdSidenav','$location', '$r
 			name: "Perfil",
 			url: "/profile",
 			icon: "account_circle"
+		},
+		{
+			name: "Usuarios",
+			url: "/users",
+			icon: "list"
 		}
-		
 	]
 
-	$scope.activeMenu = $scope.menuItems[0];
+
+
+	$scope.activeMenu;
 
 	$scope.setActive = function(menuItem){
 		$scope.activeMenu = menuItem;
 	}
 
-	function setVisible(){
-		$scope.visible = $location.path() != '/login';
-	}
 
 	$scope.$on('$routeChangeStart', function (scope, next, current) {
+		initMenu();
        	setVisible();
     });
+
+	function initMenu(){
+		var actualLocation = $location.path();
+		for (var i = $scope.menuItems.length - 1; i >= 0; i--) {
+			if (actualLocation == $scope.menuItems[i].url){
+				$scope.setActive($scope.menuItems[i]);	
+				break;
+			}
+		}
+	};
+
+	initMenu();
+
+	function setVisible(){
+		$scope.visible = $location.path() != '/login';
+	};
 
     setVisible();
 	

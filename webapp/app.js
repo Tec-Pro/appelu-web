@@ -19,6 +19,10 @@ app.config(['$routeProvider',function($routeProvider) {
 		templateUrl: "webapp/components/login/views/login.html",
 		controller: "LoginCtrl"
 	})
+	.when("/users", {
+		templateUrl: "webapp/components/users/views/list.html",
+		controller: "UserCtrl"
+	})
 	.otherwise({
 		redirectTo: "/login"
 	});

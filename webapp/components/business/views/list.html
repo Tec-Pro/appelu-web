@@ -1,0 +1,25 @@
+<!-- Main container -->
+<div>
+  <div layout="row" layout-padding>
+      <md-list flex>
+        <md-list-item class="md-2-line" ng-repeat="shift in shifts track by $index">
+          <!-- <div class="md-list-item-text" layout="column"> -->
+            <!-- <div> -->
+              <p>Inicio: {{shift.attributes.start_time | date:"dd/MM HH:mm"}}</p>
+              <p>Fin: {{shift.attributes.end_time | date:"dd/MM HH:mm"}}</p>
+              <p>Servicio: {{shift.attributes.service_id}}</p>
+              <p ng-show="shift.attributes.user_id != null">Usuario: {{shift.attributes.user_id}}</p>
+              <p ng-show="shift.attributes.user_id == null">
+              Turno libre
+              </p>
+            <!-- </div>
+            <div> -->
+              <p ng-show="shift.attributes.comment != ''">Comentario: {{shift.attributes.comment}}</p>
+              <md-button class="md-fab md-mini" ng-click="deleteShift(shift.attributes.id, $index)" ng-disabled="shift.attributes.status == 'disabled'" aria-label="description" md-no-ink="false" md-ripple-size="full">X</md-button>
+              <md-button class="md-fab md-mini" ng-click="enableShift(shift)" ng-disabled="shift.attributes.status != 'disabled'" aria-label="Enable shift" md-no-ink="false" md-ripple-size="full"> O</md-button>
+            <!-- </div> -->
+          <!-- </div> -->
+        </md-list-item>  
+      </md-list>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<table class="user-table">
+	<thead class="user-table-header user-table-text">
+		<tr>
+			<th>ID</th>
+			<th>Nombre</th>
+			<th>Rol</th>
+			<th>Teléfono</th>
+		</tr>
+	</thead>
+	<tbody class="user-table-content">
+		<tr ng-repeat="user in users track by $index">
+				<td>
+					{{user.id}}			
+				</td>
+				<td>
+					{{user.role}}			
+				</td>
+				<td>
+					{{user.name}}			
+				</td>
+				<td>
+					{{user.phone}}			
+				</td>
+		</tr>
+	</tbody>
+</table>
