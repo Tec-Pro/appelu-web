@@ -12,4 +12,8 @@ app.controller('UserCtrl', ['$scope','$timeout','$mdSidenav','userFactory', func
   };
 
   getUsers();
+
+  $scope.selectRow = function(index){
+    $scope.activeRow = index;
+  }
 }])

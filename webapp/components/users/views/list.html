@@ -1,4 +1,4 @@
-<table class="user-table">
+<table class="user-table" cellspacing="0" cellpadding="0">
 	<thead class="user-table-header user-table-text">
 		<tr>
 			<th>ID</th>
@@ -8,15 +8,15 @@
 		</tr>
 	</thead>
 	<tbody class="user-table-content">
-		<tr ng-repeat="user in users track by $index">
+		<tr class="user-table-row" ng-repeat="user in users track by $index" ng-class="{'selected-row': $index === activeRow}" ng-click="selectRow($index)">
 				<td>
 					{{user.id}}			
 				</td>
 				<td>
-					{{user.role}}			
+					{{user.name}}			
 				</td>
 				<td>
-					{{user.name}}			
+					{{user.role}}			
 				</td>
 				<td>
 					{{user.phone}}			

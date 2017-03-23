@@ -1,5 +1,6 @@
 .user-table {
-	width: 100%;
+	width: 95%;
+	margin-left: 25px;
 }
 
 .user-table-header{
@@ -12,6 +13,21 @@
 	font-size: 15px;
 	font-weight: 500;
 	color: rgba(0,0,0,0.87);
+}
+
+.user-table-row:hover {
+	background-color: #EEEEEE;
+}
+
+.selected-row {
+	background-color: #F5F5F5;
+	outline: none;
+}
+
+.user-table-row > td{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #000000;
 }
 
 .user-table-numeric {
