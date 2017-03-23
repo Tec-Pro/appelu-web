@@ -15,7 +15,6 @@ app.controller('ShiftCtrl', ['$scope','$timeout','$mdSidenav','shiftFactory', fu
   getShifts();
 
   $scope.deleteShift = function(id, index){
-    console.log("Hello "+id+" "+index);
     shiftFactory.deleteShift(id).then(function(response){
       $scope.shifts[index].attributes.status = "disabled";      
       console.log($scope.shifts);

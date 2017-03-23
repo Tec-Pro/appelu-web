@@ -1,4 +1,5 @@
 .user-table {
+	margin-top: 25px;
 	width: 95%;
 	margin-left: 25px;
 }
@@ -7,6 +8,10 @@
 	font-size: 14px;
 	font-weight: 400;
 	color: rgba(0,0,0,0.54);
+}
+
+.user-table-header > tr > th{
+	border-bottom: 1px solid #000000;
 }
 
 .user-table-content{
