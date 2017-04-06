@@ -1,31 +1,37 @@
 <!-- Main container -->
-<table class="user-table" cellpadding="0" cellspacing="0">
-  <thead class="user-table-header user-table-text">
-    <tr>
-      <th>Inicio</th>
-      <th>Fin</th>
-      <th>Servicio</th>
-      <th>Usuario de Reserva</th>
-      <th>Comentario</th>
-    </tr>
-  </thead>
-  <tbody class="user-table-content">
-    <tr class="user-table-row" ng-repeat="shift in shifts track by $index" ng-class="{'selected-row': $index === activeRow}" ng-click="selectRow($index)">
-      <td>
-        {{shift.attributes.start_time | date:"dd/MM HH:mm"}}
-      </td>
-      <td>
-        {{shift.attributes.end_time | date:"dd/MM HH:mm"}}
-      </td>
-      <td>
-        {{shift.attributes.service_id}}
-      </td>
-      <td>
-        {{shift.attributes.user_id}}
-      </td>
-      <td>
-        {{shift.attributes.comment}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+<md-card>
+<md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+  <div class="md-toolbar-tools">
+    <span>Turnos</span>
+  </div>
+</md-toolbar>
+<md-toolbar class="md-table-toolbar-alternate" ng-show="options.rowSelection && selected.length">
+  <div class="md-toolbar-tools">
+    <span>{{selected.length}} {{selected.length > 1 ? 'turnos seleccionados' : 'turno seleccionado'}}</span>
+  </div>
+</md-toolbar>
+<md-table-container>
+  <table md-table md-row-select multiple ng-model="selected">
+    <thead md-head md-order="query.order">
+      <tr md-row>
+        <th md-column md-numeric md-order-by="attributes.id">ID</th>
+        <th md-column md-order-by="attributes.start_time">Inicio</th>
+        <th md-column md-order-by="attributes.end_time">Fin</th>
+        <th md-column md-numeric md-order-by="attributes.user_id">Usuario</th>
+        <th md-column md-numeric md-order-by="attributes.service_id">Servicio</th>
+        <th md-column>Comentario</th>
+      </tr>
+    </thead>
+    <tbody md-body>
+      <tr md-row md-select="shift" md-select-id="id" md-auto-select ng-repeat="shift in shifts | orderBy: query.order">
+        <td md-cell>{{shift.attributes.id}}</td>
+        <td md-cell>{{shift.attributes.start_time | date:"dd/MM HH:mm"}}</td>
+        <td md-cell>{{shift.attributes.end_time | date:"dd/MM HH:mm"}}</td>
+        <td md-cell>{{shift.attributes.user_id}}</td>
+        <td md-cell>{{shift.attributes.service_id}}</td>
+        <td md-cell>{{shift.attributes.comment}}</td>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>
+</md-card>

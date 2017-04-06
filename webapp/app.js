@@ -3,7 +3,7 @@
 *
 * Description
 */
-var app = angular.module('Appelu', ['ngRoute', 'ngMaterial']);
+var app = angular.module('Appelu', ['ngRoute', 'ngMaterial', 'md.data.table']);
 
 app.config(['$routeProvider',function($routeProvider) {
 	$routeProvider

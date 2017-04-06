@@ -3,7 +3,15 @@ var app = angular.module('Appelu');
 app.controller('ShiftCtrl', ['$scope','$timeout','$mdSidenav','shiftFactory', function ($scope, $timeout, $mdSidenav, shiftFactory) {
 	$scope.services = ["Peluquería", "Barbería"];
 
-  function getShifts(){
+  $scope.selected = [];
+
+  $scope.query = {
+    order: 'name',
+    limit: 5,
+    page: 1
+  };
+
+  $scope.getShifts = function(){
     shiftFactory.getServiceShifts(62).then(function(response){
       $scope.shifts = response.data;
       console.log(response)
@@ -12,7 +20,7 @@ app.controller('ShiftCtrl', ['$scope','$timeout','$mdSidenav','shiftFactory', fu
     })
   }
 
-  getShifts();
+  $scope.getShifts();
 
   $scope.deleteShift = function(id, index){
     shiftFactory.deleteShift(id).then(function(response){
@@ -34,5 +42,11 @@ app.controller('ShiftCtrl', ['$scope','$timeout','$mdSidenav','shiftFactory', fu
     })
   }
 
-  
+  $scope.selectRow = function(index){
+    $scope.activeRow = index;
+  }
+
+  $scope.options ={
+    rowSelection: true,
+  };
 }])
