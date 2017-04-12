@@ -3,15 +3,36 @@
 <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
   <div class="md-toolbar-tools">
     <span>Turnos</span>
+    <div flex></div>
+    <md-button class="md-icon-button">
+      <md-icon>note_add</md-icon>
+    </md-button>
+    <md-menu>
+      <md-button class="md-icon-button" ng-click="serviceMenu($mdMenu, $event)">
+        <md-icon>refresh</md-icon>
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="getShifts(62)">Peluquería</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="getShifts(68)">Barbería</md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
   </div>
 </md-toolbar>
 <md-toolbar class="md-table-toolbar-alternate" ng-show="options.rowSelection && selected.length">
   <div class="md-toolbar-tools">
     <span>{{selected.length}} {{selected.length > 1 ? 'turnos seleccionados' : 'turno seleccionado'}}</span>
+    <div flex></div>
+    <md-button class="md-icon-button" ng-click="deleteShift(selected[0])">
+      <md-icon>delete</md-icon>
+    </md-button>
   </div>
 </md-toolbar>
 <md-table-container>
-  <table md-table md-row-select multiple ng-model="selected">
+  <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected">
     <thead md-head md-order="query.order">
       <tr md-row>
         <th md-column md-numeric md-order-by="attributes.id">ID</th>
@@ -23,7 +44,7 @@
       </tr>
     </thead>
     <tbody md-body>
-      <tr md-row md-select="shift" md-select-id="id" md-auto-select ng-repeat="shift in shifts | orderBy: query.order">
+      <tr md-row md-select="shift" md-select-id="id" md-auto-select ng-repeat="shift in shifts | orderBy: query.order" ng-show="shift.attributes.status === 'active'">
         <td md-cell>{{shift.attributes.id}}</td>
         <td md-cell>{{shift.attributes.start_time | date:"dd/MM HH:mm"}}</td>
         <td md-cell>{{shift.attributes.end_time | date:"dd/MM HH:mm"}}</td>

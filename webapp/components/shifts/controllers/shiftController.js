@@ -1,6 +1,6 @@
 var app = angular.module('Appelu');
 
-app.controller('ShiftCtrl', ['$scope','$timeout','$mdSidenav','shiftFactory', function ($scope, $timeout, $mdSidenav, shiftFactory) {
+app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$mdSidenav','shiftFactory', function ($scope, $timeout, $location, $routeParams, $mdSidenav, shiftFactory) {
 	$scope.services = ["Peluquería", "Barbería"];
 
   $scope.selected = [];
@@ -11,8 +11,13 @@ app.controller('ShiftCtrl', ['$scope','$timeout','$mdSidenav','shiftFactory', fu
     page: 1
   };
 
-  $scope.getShifts = function(){
-    shiftFactory.getServiceShifts(62).then(function(response){
+  $scope.serviceMenu = function($mdMenu, ev){
+    $mdMenu.open(ev);
+  }
+
+  $scope.getShifts = function(service_id){
+    $location.search('service_id', service_id);
+    shiftFactory.getServiceShifts(service_id).then(function(response){
       $scope.shifts = response.data;
       console.log(response)
     }, function(error){
@@ -20,16 +25,27 @@ app.controller('ShiftCtrl', ['$scope','$timeout','$mdSidenav','shiftFactory', fu
     })
   }
 
-  $scope.getShifts();
+  $scope.getShifts($routeParams.service_id);
 
-  $scope.deleteShift = function(id, index){
+  $scope.deleteShift = function(item){
+    console.log(item);
+    shiftFactory.deleteShift(item.attributes.id).then(function(response){
+      item.attributes.status = "disabled";
+      $scope.selected = [];      
+      console.log($scope.shifts);
+    }, function(error){
+      console.log(error);
+    });
+  }
+
+  /*$scope.deleteShift = function(id, index){
     shiftFactory.deleteShift(id).then(function(response){
       $scope.shifts[index].attributes.status = "disabled";      
       console.log($scope.shifts);
     }, function(error){
       console.log(error);
     });
-  }
+  }*/
 
   $scope.enableShift = function(shift){
     var updatedShift = shift;
@@ -48,5 +64,6 @@ app.controller('ShiftCtrl', ['$scope','$timeout','$mdSidenav','shiftFactory', fu
 
   $scope.options ={
     rowSelection: true,
+    multiSelect: false
   };
 }])
