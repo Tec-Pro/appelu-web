@@ -1,106 +1,25 @@
-
-
-
-  <body>
-
-  <div layout="row" style="height:100%;">
-    <div layout="column" flex>
-      
-      <div flex> 
-
-         <div layout="row" layout-align="center center">
-    
-                <h1>Peluqueria</h1>
-          </div>
-
-
-      </div>
-      <div flex>
-
-        
-         
-            <md-card flex flex-gt-md="50" layout-align="center center">
-              <div layout="row" layout-align="center center">
-    
-                <h2>Iniciar sesion</h2>
+<md-card flex="70">
+  <md-card-content layout-padding>
+    <h1>Bienvenido</h1>
+    <div>
+      <form name="loginForm">
+        <div layout="column">
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>E-mail</label>
+            <input type="email" name="email" placeholder="email@host.com" required="true" ng-model="login.email">
+            <div ng-messages="loginForm.email.$error" role="alert" multiple="">
+              <div ng-message="required" class="login-error-msg">Por favor ingrese su correo</div>
+            </div>
+          </md-input-container>
+          <md-input-container ng-class="md-block">
+            <label>Password</label>
+              <input type="password" name="password" ng-model="login.pass" placeholder="password" required="true"/>
+              <div ng-messages="loginForm.password.$error" role="alert" multiple="">
+                <div ng-message="required" class="my-message">Por favor ingrese su contraseña.</div>
               </div>
-                <md-card-content>
-                    
-                      <md-content class="md-no-momentum">
-                      <md-input-container class="md-icon-float md-block">
-                        <!-- Use floating label instead of placeholder -->
-                        <label>Usuario</label>
-                        <input ng-model="username" type="text">
-                      </md-input-container>
-
-                      <md-content class="md-no-momentum">
-                      <md-input-container class="md-icon-float md-block">
-                        <!-- Use floating label instead of placeholder -->
-                        <label>Contraseña</label>
-                        <input ng-model="password" type="password">
-                      </md-input-container>
-
-                    </md-content>
-
-                        <div layout="row" layout-align="center center">
-    
-                           <md-button class="md-raised" ng-click="ingresar()">Ingresar</md-button>
-
-                        </div>
-                        <br>
-                        <div>Olvidaste tu contraseña? click aqui!</div>
-                        <br>
-                        <div>
-
-                            <div layout="row" layout-align="center center">
-    
-                                <h3>¿Aun no tienes cuenta?</h3>
-                            </div>
-                            
-                            <div layout="row" layout-align="center center">
-    
-                           
-                            <md-button class="md-raised md-primary" ng-click="ingresar()">Registrate</md-button>
-
-                        </div>
-                           
-                        </div>
-
-                
-                </md-card-content>
-            </md-card>
-        
-        
-
-      </div>
-      
+          </md-input-container>
+        </div>
+      </form>
     </div>
-  </div>
-  
-
-</body>
-
-
-
-<style>
-body {
-  width:100%;
-  padding:0;
-  margin:0;
-  box-sizing: border-box;
-  background-color: rgba(163, 160, 160, 0.45);
-}
-/*md-content.md-default-theme, md-content {
-  background-color: rgba(163, 160, 160, 0.45);
-}*/
-
-.carddemoBasicUsage .card-media {
-  background-color: #999999; }
-
-md-card > h2 {
-  padding-left : 15px;
-  
-}
-
-</style>
-
+  </md-content>
+</md-card>
