@@ -15,6 +15,10 @@ app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$
     $mdMenu.open(ev);
   }
 
+  $scope.optionsMenu = function($mdMenu, ev){
+    $mdMenu.open(ev);
+  }
+
   $scope.getShifts = function(service_id){
     $location.search('service_id', service_id);
     shiftFactory.getServiceShifts(service_id).then(function(response){
@@ -23,6 +27,23 @@ app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$
     }, function(error){
       console.log(error);
     })
+  }
+
+  $scope.showStatus = function(status){
+    switch(status){
+      case "active":
+        return "Disponible";
+        break;
+      case "disabled":
+        return "Deshabilitado";
+        break;
+      case "reserved":
+        return "Reservado";
+        break;
+      default:
+        return "";
+        break;
+    }
   }
 
   $scope.getShifts($routeParams.service_id);

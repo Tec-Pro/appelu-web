@@ -5,7 +5,7 @@
     <span>Turnos</span>
     <div flex></div>
     <md-button class="md-icon-button">
-      <md-icon>note_add</md-icon>
+      <md-icon>add</md-icon>
     </md-button>
     <md-menu>
       <md-button class="md-icon-button" ng-click="serviceMenu($mdMenu, $event)">
@@ -38,19 +38,39 @@
         <th md-column md-numeric md-order-by="attributes.id">ID</th>
         <th md-column md-order-by="attributes.start_time">Inicio</th>
         <th md-column md-order-by="attributes.end_time">Fin</th>
+        <th md-column md-order-by="attributes.status">Estado</th>
         <th md-column md-numeric md-order-by="attributes.user_id">Usuario</th>
         <th md-column md-numeric md-order-by="attributes.service_id">Servicio</th>
         <th md-column>Comentario</th>
       </tr>
     </thead>
     <tbody md-body>
-      <tr md-row md-select="shift" md-select-id="id" md-auto-select ng-repeat="shift in shifts | orderBy: query.order" ng-show="shift.attributes.status === 'active'">
+      <tr md-row md-select="shift" md-select-id="id" md-auto-select ng-repeat="shift in shifts | orderBy: query.order">
         <td md-cell>{{shift.attributes.id}}</td>
         <td md-cell>{{shift.attributes.start_time | date:"dd/MM HH:mm"}}</td>
         <td md-cell>{{shift.attributes.end_time | date:"dd/MM HH:mm"}}</td>
-        <td md-cell>{{shift.attributes.user_id}}</td>
+        <td md-cell>
+        {{showStatus(shift.attributes.status)}}
+        </td>
+        <td md-cell>
+        {{shift.attributes.user_id}}</td>
         <td md-cell>{{shift.attributes.service_id}}</td>
         <td md-cell>{{shift.attributes.comment}}</td>
+        <td md-cell>
+          <md-menu>
+            <md-button class="md-icon-button" ng-click="optionsMenu($mdMenu, $event)">
+              <md-icon>more_vert</md-icon>
+            </md-button>
+            <md-menu-content width="4">
+              <md-menu-item>
+                <md-button ng-click="getShifts(62)">Peluquería</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="getShifts(68)">Barbería</md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </td>
       </tr>
     </tbody>
   </table>
