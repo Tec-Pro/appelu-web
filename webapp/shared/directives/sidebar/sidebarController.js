@@ -5,21 +5,22 @@ app.controller('SidebarCtrl', ['$scope','$timeout','$mdSidenav','$location', '$r
 		{
 			name: "Turnos",
 			url: "/shifts",
-			icon: "book"
+			icon: "book",
+			adminOnly: false
 		},
 		{
-			name: "Perfil",
-			url: "/profile",
-			icon: "account_circle"
+			name: "Reservas",
+			url: "/reserves",
+			icon: "label",
+			adminOnly: false
 		},
 		{
 			name: "Usuarios",
 			url: "/users",
-			icon: "list"
+			icon: "list",
+			adminOnly: true
 		}
 	]
-
-
 
 	$scope.activeMenu;
 
