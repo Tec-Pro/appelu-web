@@ -2,6 +2,10 @@
 <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
 	<div class="md-toolbar-tools">
 		<span>Usuarios</span>
+		<div flex></div>
+	    <md-button ng-click="showAddUser($event)" class="md-icon-button">
+	      <md-icon>add</md-icon>
+	    </md-button>
 	</div>
 </md-toolbar>
 <md-toolbar class="md-table-toolbar-alternate" ng-show="options.rowSelection && selected.length">
@@ -16,6 +20,9 @@
 				<th md-column md-numeric md-order-by="id">ID</th>
 				<th md-column md-order-by="name">Nombre</th>
 				<th md-column md-order-by="role">Rol</th>
+				<th md-column md-order-by="enable">
+				Habilitado
+				</th>
 				<th md-column md-order-by="phone">Teléfono</th>
 			</tr>
 		</thead>
@@ -24,6 +31,7 @@
 				<td md-cell>{{user.id}}</td>
 				<td md-cell>{{user.name}}</td>
 				<td md-cell>{{user.role}}</td>
+				<td md-cell>{{user.enable}}</td>
 				<td md-cell>{{user.phone}}</td>
 			</tr>
 		</tbody>
