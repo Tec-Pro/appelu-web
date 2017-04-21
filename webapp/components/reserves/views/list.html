@@ -1,0 +1,50 @@
+<!-- Main container -->
+<md-card>
+<md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+  <div class="md-toolbar-tools">
+    <span>Reservas</span>
+  </div>
+</md-toolbar>
+<md-toolbar class="md-table-toolbar-alternate" ng-show="options.rowSelection && selected.length">
+  <div class="md-toolbar-tools">
+    <span>{{selected.length}} {{selected.length > 1 ? 'turnos seleccionados' : 'turno seleccionado'}}</span>
+    <div flex></div>
+    <md-button class="md-icon-button" ng-click="deleteShift(selected[0])">
+      <md-icon>delete</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<md-table-container>
+  <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected">
+    <thead md-head md-order="query.order">
+      <tr md-row>
+        <th md-column md-order-by="attributes.start_time">Inicio</th>
+        <th md-column md-order-by="attributes.end_time">Fin</th>
+        <th md-column>Comentario</th>
+      </tr>
+    </thead>
+    <tbody md-body>
+      <tr md-row md-select="reserve" md-select-id="id" md-auto-select ng-repeat="reserve in reserves | orderBy: query.order">
+        <td md-cell>{{reserve.attributes.start_time | date:"dd/MM HH:mm"}}</td>
+        <td md-cell>{{reserve.attributes.end_time | date:"dd/MM HH:mm"}}</td>
+        <td md-cell>{{reserve.attributes.comment}}</td>
+        <td md-cell>
+          <md-menu>
+            <md-button class="md-icon-button" ng-click="optionsMenu($mdMenu, $event)">
+              <md-icon>more_vert</md-icon>
+            </md-button>
+            <md-menu-content width="4">
+              <md-menu-item>
+                <md-button ng-click="getShifts(62)">Peluquería</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="getShifts(68)">Barbería</md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>
+</md-card>
