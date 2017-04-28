@@ -1,0 +1,38 @@
+<md-card flex="70">
+  <md-card-content layout-padding>
+    <h1>Nuevo usuario</h1>
+    <div>
+      <form name="registerForm" ng-submit="register()">
+        <div layout="column">
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>E-mail</label>
+            <input type="email" name="email"  required="true" ng-model="user.email">
+            <div ng-messages="registerForm.email.$error" role="alert" multiple="false">
+              <div ng-message="email" class="login-error-msg">
+                Por favor ingrese una dirección de correo válida
+              </div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Contraseña</label>
+            <input type="password" name="password" ng-model="user.pass"  required="true"/>
+            <div ng-messages="registerForm.password.$error" role="alert" multiple="">
+              <div ng-message="required" class="my-message">
+                Por favor ingrese su contraseña.
+              </div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Teléfono</label>
+            <input type="text" required="true" ng-model="user.phone">
+          </md-input-container>
+          <div>
+            <md-button ng-disabled="!registerForm.$valid" type="submit" class="md-raised md-primary">
+              Registrar
+            </md-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </md-content>
+</md-card>

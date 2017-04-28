@@ -1,6 +1,6 @@
 var app = angular.module('Appelu');
 
-app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$mdSidenav','shiftFactory', function ($scope, $timeout, $location, $routeParams, $mdSidenav, shiftFactory) {
+app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$mdSidenav','shiftFactory','AuthFactory', function ($scope, $timeout, $location, $routeParams, $mdSidenav, shiftFactory, AuthFactory) {
 	$scope.services = ["Peluquería", "Barbería"];
 
   $scope.selected = [];
@@ -10,6 +10,8 @@ app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$
     limit: 5,
     page: 1
   };
+
+
 
   $scope.serviceMenu = function($mdMenu, ev){
     $mdMenu.open(ev);
@@ -27,6 +29,10 @@ app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$
     }, function(error){
       console.log(error);
     })
+  }
+
+  if (!AuthFactory.user){
+    $location.path("/login");
   }
 
   $scope.showStatus = function(status){

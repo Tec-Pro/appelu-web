@@ -1,6 +1,6 @@
 var app = angular.module('Appelu');
 
-app.controller('ReserveCtrl', ['$scope','$timeout', '$location', '$routeParams','$mdSidenav','shiftFactory', function ($scope, $timeout, $location, $routeParams, $mdSidenav, shiftFactory) {
+app.controller('ReserveCtrl', ['$scope','$timeout', '$location', '$routeParams','$mdSidenav','shiftFactory','AuthFactory', function ($scope, $timeout, $location, $routeParams, $mdSidenav, shiftFactory, AuthFactory) {
   $scope.selected = [];
 
   $scope.query = {
@@ -17,13 +17,19 @@ app.controller('ReserveCtrl', ['$scope','$timeout', '$location', '$routeParams',
     $mdMenu.open(ev);
   }
 
+  if (!AuthFactory.user){
+    $location.path("/login");
+  }
+
   $scope.getReserves = function(){
-    shiftFactory.getUserShifts(1).then(function(response){
-      $scope.reserves = response.data;
-      console.log(response)
-    }, function(error){
-      console.log(error);
-    })
+    if (AuthFactory.user){
+      shiftFactory.getUserShifts(AuthFactory.user.id).then(function(response){
+        $scope.reserves = response.data;
+        console.log(response)
+      }, function(error){
+        console.log(error);
+      })
+    }
   }
 
   $scope.showStatus = function(status){
