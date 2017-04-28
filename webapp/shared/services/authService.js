@@ -1,22 +1,27 @@
 var app = angular.module('Appelu');
 	
-app.factory('AuthService', ['$http', function($http){
+app.factory('AuthFactory', ['$http', 'localStorageService', function($http, localStorageService){
 
 	var urlBase = "https://private-9195cfb-reservationsapp.apiary-mock.com/login"
 
-	loginFactory = {};
-	
-	loginFactory.user = {};
+	authFactory = {};
+	if (localStorageService.get("user")){
+		authFactory.user = localStorageService.get("user");
+	} 
 
-
-	loginFactory.login = function (user){
-		$http.post(urlBase, user);
+	authFactory.login = function (user){
+		return $http.post(urlBase, user);
 	};
 
 
-	loginFactory.logout = function(){
-		loginFactory.user = "";
+	authFactory.logout = function(){
+		localStorageService.remove("user");
+		authFactory.user = undefined;
 	}
 
-	return loginFactory;
+	authFactory.setUser = function (user){
+		authFactory.user = user;
+		localStorageService.set("user",user);
+	}
+	return authFactory;
 }]);

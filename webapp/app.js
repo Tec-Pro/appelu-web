@@ -3,9 +3,9 @@
 *
 * Description
 */
-var app = angular.module('Appelu', ['ngRoute', 'ngMaterial', 'md.data.table']);
+var app = angular.module('Appelu', ['ngRoute', 'ngMaterial', 'md.data.table', 'LocalStorageModule']);
 
-app.config(['$routeProvider',function($routeProvider) {
+app.config(['$routeProvider', 'localStorageServiceProvider', function($routeProvider, localStorageServiceProvider) {
 	$routeProvider
 	.when("/reserves",{
 		templateUrl: "webapp/components/reserves/views/list.html",
@@ -23,7 +23,13 @@ app.config(['$routeProvider',function($routeProvider) {
 		templateUrl: "webapp/components/users/views/list.html",
 		controller: "UserCtrl"
 	})
+	.when("/register", {
+		templateUrl: "webapp/components/register/views/register.html",
+		controller: "UserCtrl"
+	})
 	.otherwise({
 		redirectTo: "/login"
 	});
+
+	localStorageServiceProvider.setPrefix('appelu');
 }])
