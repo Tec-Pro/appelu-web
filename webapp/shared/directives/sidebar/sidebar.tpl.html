@@ -4,7 +4,7 @@
   <md-list>
   	<div ng-repeat="item in menuItems">
     	<!-- Items -->
-      <md-list-item>
+      <md-list-item ng-show="item.visible">
       	<md-button ng-href="#!{{item.url}}" ng-class="{'active': activeMenu === item}" flex ng-click="setActive(item)">
       		<div flex>
       			{{item.name}} 
@@ -12,7 +12,7 @@
       		</div>
       	</md-button>
       </md-list-item>
-      <md-divider></md-divider>
+      <md-divider ng-show="item.visible"></md-divider>
     </div>
   </md-list>
 </md-sidenav>

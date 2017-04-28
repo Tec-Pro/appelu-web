@@ -15,6 +15,10 @@ app.factory('shiftFactory', ['$http', function($http){
 	}
 	*/
 
+	shiftFactory.getAvailableShifts = function(id){
+		return $http.get(urlBase+'/'+id);
+	}
+	
 	shiftFactory.deleteShift = function(id){
 		return $http.delete(urlBase+'/'+id);
 	}	
