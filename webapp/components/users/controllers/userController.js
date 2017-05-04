@@ -11,7 +11,9 @@ app.controller('UserCtrl', ['$scope', '$location','$timeout','$mdSidenav','userF
   };
 
   if (!AuthFactory.user){
-    $location.path("/login");
+    if ($location.path() != "/register"){
+      $location.path("/login");
+    }
   }
 
  /* function success(users){
@@ -42,7 +44,9 @@ app.controller('UserCtrl', ['$scope', '$location','$timeout','$mdSidenav','userF
     });
   };
 
-  $scope.getUsers();
+  if ($location.path() != '/register'){
+    $scope.getUsers();
+  }
 
   $scope.selectRow = function(index){
     $scope.activeRow = index;
