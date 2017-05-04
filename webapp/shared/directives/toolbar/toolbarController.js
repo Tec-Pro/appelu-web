@@ -19,6 +19,14 @@ app.controller('ToolbarCtrl', ['$scope', 'AuthFactory', '$location', '$route', f
 		}
 	}
 
+	$scope.home = function(){
+		if (AuthFactory.user){
+			$location.path("/shifts");
+		} else {
+			$location.path("/login");
+		}
+	}
+
 	$scope.$on('$routeChangeStart', function (scope, next, current) {
 		showLogout();
   });
