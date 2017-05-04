@@ -23,7 +23,7 @@ app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$
 
   $scope.getShifts = function(service_id){
     $location.search('service_id', service_id);
-    shiftFactory.getServiceShifts(service_id).then(function(response){
+    shiftFactory.getServiceShifts(1).then(function(response){
       $scope.shifts = response.data;
       console.log(response)
     }, function(error){
@@ -33,6 +33,24 @@ app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$
 
   if (!AuthFactory.user){
     $location.path("/login");
+  }
+
+  $scope.loggedUser = AuthFactory.user;
+
+  $scope.checkPermission = function(){
+    return $scope.loggedUser.role == "owner" || $scope.loggedUser.role == "admin";
+  }
+
+  $scope.checkClient = function(){
+    return $scope.loggedUser.role == "client";
+  }
+
+  $scope.checkStatus = function(item){
+    if ($scope.loggedUser.role == "client"){
+      return item.attributes.status == "active";
+    } else {
+      return true;
+    }
   }
 
   $scope.showStatus = function(status){
@@ -55,11 +73,13 @@ app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$
   $scope.getShifts($routeParams.service_id);
 
   $scope.deleteShift = function(item){
-    console.log(item);
-    shiftFactory.deleteShift(item.attributes.id).then(function(response){
+    var updatedShift = item;
+    updatedShift.attributes.status = "disabled";
+    updatedShift.attributes.user_id = null
+    shiftFactory.updateShift(updatedShift).then(function(response){
       item.attributes.status = "disabled";
-      $scope.selected = [];      
-      console.log($scope.shifts);
+      item.attributes.user_id = null;
+      console.log(response);
     }, function(error){
       console.log(error);
     });
@@ -73,6 +93,22 @@ app.controller('ShiftCtrl', ['$scope','$timeout', '$location', '$routeParams','$
       console.log(error);
     });
   }*/
+  $scope.showReserveDialog = function(){
+    
+  }
+
+  var createReserve = function(shift){
+    var updatedShift = shift;
+    updatedShift.attributes.status = "reserved";
+    updatedShift.attributes.user_id = $scope.loggedUser.user_id;
+    updatedShift.attributes.comment = $scope.reserve_comment;
+    shiftFactory.updateShift(updatedShift).then(function(response){
+      shift.attributes.status = "reserved";
+      $scope.selected = [];
+    }, function(error){
+      console.log(error);
+    })
+  };
 
   $scope.enableShift = function(shift){
     var updatedShift = shift;

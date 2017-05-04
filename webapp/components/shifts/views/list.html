@@ -4,10 +4,10 @@
   <div class="md-toolbar-tools">
     <span>Turnos</span>
     <div flex></div>
-    <md-button class="md-icon-button">
+    <!-- <md-button class="md-icon-button">
       <md-icon>add</md-icon>
-    </md-button>
-    <md-menu>
+    </md-button> -->
+    <!-- <md-menu>
       <md-button class="md-icon-button" ng-click="serviceMenu($mdMenu, $event)">
         <md-icon>refresh</md-icon>
       </md-button>
@@ -19,15 +19,24 @@
           <md-button ng-click="getShifts(68)">Barbería</md-button>
         </md-menu-item>
       </md-menu-content>
-    </md-menu>
+    </md-menu> -->
   </div>
 </md-toolbar>
 <md-toolbar class="md-table-toolbar-alternate" ng-show="options.rowSelection && selected.length">
   <div class="md-toolbar-tools">
     <span>{{selected.length}} {{selected.length > 1 ? 'turnos seleccionados' : 'turno seleccionado'}}</span>
     <div flex></div>
-    <md-button class="md-icon-button" ng-click="deleteShift(selected[0])">
+    <md-button ng-if="checkPermission()" class="md-icon-button" ng-click="deleteShift(selected[0])">
+      <md-tooltip md-direction="bottom">Borrar</md-tooltip>
       <md-icon>delete</md-icon>
+    </md-button>
+    <md-button ng-if="checkPermission()" class="md-icon-button" ng-click="enableShift(selected[0])">
+      <md-tooltip md-direction="bottom">Habilitar</md-tooltip>
+      <md-icon>done</md-icon>
+    </md-button>
+    <md-button ng-if="checkClient()" class="md-icon-button" ng-click="showReserveDialog()">
+      <md-tooltip md-direction="bottom">Reservar</md-tooltip>
+      <md-icon>add</md-icon>
     </md-button>
   </div>
 </md-toolbar>
@@ -39,24 +48,24 @@
         <th md-column md-order-by="attributes.start_time">Inicio</th>
         <th md-column md-order-by="attributes.end_time">Fin</th>
         <th md-column md-order-by="attributes.status">Estado</th>
-        <th md-column md-numeric md-order-by="attributes.user_id">Usuario</th>
-        <th md-column md-numeric md-order-by="attributes.service_id">Servicio</th>
-        <th md-column>Comentario</th>
+        <th md-column md-numeric md-order-by="attributes.user_id" ng-if="checkPermission()">Usuario</th>
+        <th ng-if="checkPermission()" md-column md-numeric md-order-by="attributes.service_id">Servicio</th>
+        <th md-column ng-if="checkPermission()">Comentario</th>
       </tr>
     </thead>
     <tbody md-body>
-      <tr md-row md-select="shift" md-select-id="id" md-auto-select ng-repeat="shift in shifts | orderBy: query.order">
+      <tr md-row md-select="shift" md-select-id="id" md-auto-select ng-repeat="shift in shifts | orderBy: query.order" ng-if="checkStatus(shift)">
         <td md-cell>{{shift.attributes.id}}</td>
         <td md-cell>{{shift.attributes.start_time | date:"dd/MM HH:mm"}}</td>
         <td md-cell>{{shift.attributes.end_time | date:"dd/MM HH:mm"}}</td>
         <td md-cell>
         {{showStatus(shift.attributes.status)}}
         </td>
-        <td md-cell>
+        <td md-cell ng-if="checkPermission()">
         {{shift.attributes.user_id}}</td>
-        <td md-cell>{{shift.attributes.service_id}}</td>
-        <td md-cell>{{shift.attributes.comment}}</td>
-        <td md-cell>
+        <td md-cell ng-if="checkPermission()">{{shift.attributes.service_id}}</td>
+        <td md-cell ng-if="checkPermission()">{{shift.attributes.comment}}</td>
+        <!-- <td md-cell>
           <md-menu>
             <md-button class="md-icon-button" ng-click="optionsMenu($mdMenu, $event)">
               <md-icon>more_vert</md-icon>
@@ -70,7 +79,7 @@
               </md-menu-item>
             </md-menu-content>
           </md-menu>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>
