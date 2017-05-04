@@ -2,7 +2,7 @@ var app = angular.module('Appelu');
 
 app.factory('shiftFactory', ['$http', function($http){
 
-	var urlBase = 'https://private-9195cfb-reservationsapp.apiary-mock.com/shifts'
+	var urlBase = 'https://hidden-scrubland-50080.herokuapp.com/api/v1/shifts'// 'https://private-9195cfb-reservationsapp.apiary-mock.com/shifts'
 	var shiftFactory = {};
 
 	shiftFactory.getShift = function(id){
@@ -24,7 +24,7 @@ app.factory('shiftFactory', ['$http', function($http){
 	}	
 
 	shiftFactory.updateShift = function(shift){
-		return $http.put(urlBase+'/'+shift.id, shift);
+		return $http.put(urlBase+'/'+shift.attributes.id, shift);
 	}
 
 	shiftFactory.getServiceShifts = function(serviceId){

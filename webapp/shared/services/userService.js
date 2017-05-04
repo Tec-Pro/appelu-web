@@ -2,7 +2,7 @@ var app = angular.module('Appelu');
 
 app.factory('userFactory', ['$http', function($http){
 
-	var urlBase = 'https://private-9195cfb-reservationsapp.apiary-mock.com/users'
+	var urlBase = 'https://hidden-scrubland-50080.herokuapp.com/api/v1/users' //'https://private-9195cfb-reservationsapp.apiary-mock.com/users'
 	var userFactory = {};
 
 	userFactory.getUsers = function(){
@@ -22,7 +22,14 @@ app.factory('userFactory', ['$http', function($http){
 	}
 
 	userFactory.createUser = function(user){
+		console.log(user);
 		return $http.post(urlBase, user);
+		/*return $http({
+				method: 'POST',
+				headers: {'Content-Type':'application/json'},
+				data: user,
+				url: urlBase
+		});*/
 	}
 
 	return userFactory;
