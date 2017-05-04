@@ -5,7 +5,7 @@
 */
 var app = angular.module('Appelu', ['ngRoute', 'ngMaterial', 'md.data.table', 'LocalStorageModule']);
 
-app.config(['$routeProvider', 'localStorageServiceProvider', function($routeProvider, localStorageServiceProvider) {
+app.config(['$routeProvider', 'localStorageServiceProvider', '$httpProvider', function($routeProvider, localStorageServiceProvider, $httpProvider) {
 	$routeProvider
 	.when("/reserves",{
 		templateUrl: "webapp/components/reserves/views/list.html",
@@ -32,4 +32,6 @@ app.config(['$routeProvider', 'localStorageServiceProvider', function($routeProv
 	});
 
 	localStorageServiceProvider.setPrefix('appelu');
+
+	$httpProvider.defaults.useXDomain = true;
 }])
