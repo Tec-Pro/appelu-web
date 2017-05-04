@@ -31,44 +31,41 @@ app.controller('SidebarCtrl', ['$scope','$timeout','$mdSidenav','$location', '$r
 		$scope.activeMenu = menuItem;
 	}
 
-	$scope.loggedUser = AuthFactory.user;
-
 	$scope.$on('$routeChangeStart', function (scope, next, current) {
+		setVisible();
 		initMenu();
-   	setVisible();
   });
 
-	function initMenu(){
-		var actualLocation = $location.path();
-		for (var i = $scope.menuItems.length - 1; i >= 0; i--) {
-			if (actualLocation == $scope.menuItems[i].url){
-				$scope.setActive($scope.menuItems[i]);	
-			}
-			$scope.menuItems[i].visible = showItem($scope.menuItems[i]);
-		}
-	};
-
-	initMenu();
-
-	function setVisible(){
+  function setVisible(){
 		$scope.visible = !($location.path() == '/login' || $location.path() == '/register');
 	};
 
   setVisible();
 
+
+	function initMenu(){
+		var actualLocation = $location.path();
+		for (var i = $scope.menuItems.length - 1; i >= 0; i--) {
+			$scope.menuItems[i].visible = showItem($scope.menuItems[i]);
+			if (actualLocation == $scope.menuItems[i].url){
+				$scope.setActive($scope.menuItems[i]);	
+			}
+		}
+	};
+
+	initMenu();
+
   function showItem(item){
-  	console.log(item);
-  	if ($scope.loggedUser != undefined){
-  		if ($scope.loggedUser.role.toLowerCase() == "admin"){
-  			return true;
-  		} else if ($scope.loggedUser.role.toLowerCase() == "owner") {
+  	if (AuthFactory.user != undefined){
+  		if (AuthFactory.user.role.toLowerCase() == "admin"){
+  			return (item.url == "/shifts" || item.url == "/users");
+  		} else if (AuthFactory.user.role.toLowerCase() == "owner") {
   			return (item.url == "/shifts");
-  		} else if ($scope.loggedUser.role.toLowerCase() == "client"){
-  			console.log("Here");
+  		} else if (AuthFactory.user.role.toLowerCase() == "client"){
   			return (item.url == "/shifts" || item.url == "/reserves")
   		}
   		return false;
-			//return ((item.adminOnly && $scope.loggedUser.role == 'admin') || !(item.adminOnly && item.url == "/shifts" && $scope.loggedUser.role != "admin"))
+			//return ((item.adminOnly && AuthFactory.user.role == 'admin') || !(item.adminOnly && item.url == "/shifts" && AuthFactory.user.role != "admin"))
 		} else {
 			return false;
 		}
