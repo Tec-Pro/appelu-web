@@ -7,9 +7,12 @@
 </md-toolbar>
 <md-toolbar class="md-table-toolbar-alternate" ng-show="options.rowSelection && selected.length">
   <div class="md-toolbar-tools">
-    <span>{{selected.length}} {{selected.length > 1 ? 'turnos seleccionados' : 'turno seleccionado'}}</span>
+    <span>{{selected.length}} {{selected.length > 1 ? 'reservas seleccionadas' : 'reserva seleccionada'}}</span>
     <div flex></div>
-    <md-button class="md-icon-button" ng-click="deleteShift(selected[0])">
+    <md-button class="md-icon-button" ng-click="cancelReserve(selected[0])">
+      <md-tooltip md-delay="400" md-direction="bottom">
+        Cancelar
+      </md-tooltip>
       <md-icon>delete</md-icon>
     </md-button>
   </div>
@@ -24,25 +27,22 @@
       </tr>
     </thead>
     <tbody md-body>
-      <tr md-row md-select="reserve" md-select-id="id" md-auto-select ng-repeat="reserve in reserves | orderBy: query.order">
+      <tr md-row md-select="reserve" md-select-id="id" md-auto-select ng-repeat="reserve in reserves | orderBy: query.order" ng-if="reserve.attributes.status == 'reserved'">
         <td md-cell>{{reserve.attributes.start_time | date:"dd/MM HH:mm"}}</td>
         <td md-cell>{{reserve.attributes.end_time | date:"dd/MM HH:mm"}}</td>
         <td md-cell>{{reserve.attributes.comment}}</td>
-        <td md-cell>
+        <!-- <td md-cell>
           <md-menu>
             <md-button class="md-icon-button" ng-click="optionsMenu($mdMenu, $event)">
               <md-icon>more_vert</md-icon>
             </md-button>
             <md-menu-content width="4">
               <md-menu-item>
-                <md-button ng-click="getShifts(62)">Peluquería</md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="getShifts(68)">Barbería</md-button>
+                <md-button ng-click="cancelReserve(62)">Cancelar</md-button>
               </md-menu-item>
             </md-menu-content>
           </md-menu>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>

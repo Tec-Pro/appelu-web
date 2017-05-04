@@ -23,12 +23,23 @@ app.controller('ReserveCtrl', ['$scope','$timeout', '$location', '$routeParams',
 
   $scope.getReserves = function(){
     if (AuthFactory.user){
-      shiftFactory.getUserShifts(AuthFactory.user.id).then(function(response){
+      if (AuthFactory.user.role.toLowerCase() == "admin"){
+        shiftFactory.getServiceShifts(1).then(function(response){
         $scope.reserves = response.data;
-        console.log(response)
-      }, function(error){
-        console.log(error);
-      })
+          console.log(response)
+        }, function(error){
+          console.log(error);
+        }); 
+      } else if (AuthFactory.user.role.toLowerCase() == "client") {
+        shiftFactory.getUserShifts(AuthFactory.user.id).then(function(response){
+          $scope.reserves = response.data;
+          console.log(response)
+        }, function(error){
+          console.log(error);
+        });
+      } else {
+        $location.path("/shifts");
+      }
     }
   }
 
@@ -55,11 +66,25 @@ app.controller('ReserveCtrl', ['$scope','$timeout', '$location', '$routeParams',
     console.log(item);
     shiftFactory.deleteShift(item.attributes.id).then(function(response){
       item.attributes.status = "disabled";
-      $
-      $scope.selected = [];      
+      $scope.selected = [];
+      console.log($scope.reserves);      
     }, function(error){
       console.log(error);
     });
+  }
+
+  $scope.cancelReserve = function(item){
+    var updatedShift = item;
+    updatedShift.attributes.status = "active";
+    updatedShift.attributes.user_id = null;
+    updatedShift.attributes.comment = "";
+    shiftFactory.updateShift(item.attributes.id, item).then(function(response){
+      console.log(response);
+      item.attributes.status = "active";
+      $scope.selected = [];
+    }, function(error){
+      console.log(error);
+    })
   }
 
   /*$scope.deleteShift = function(id, index){
